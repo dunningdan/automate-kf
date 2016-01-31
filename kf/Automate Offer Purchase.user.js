@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Automate Offer Purchase
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Automate purchase of KF offer
 // @author       thedunster
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser-polyfill.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.min.js
-// @require      https://raw.github.com/nbubna/HTML/master/dist/HTML.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/html.js/0.12.1/HTML.min.js
 // @match        https://www.kickfurther.com/offer/*
 // @match        https://www.kickfurther.com/summary
 // ==/UserScript==
@@ -38,8 +38,8 @@ var inline_src = (<><![CDATA[
             a.onclick = start;
             var linkText = document.createTextNode("Insta-Buy");
             a.appendChild(linkText);
-            
-    
+
+
             var input = document.createElement("input");
             input.type = "number";
             input.id = "instaNum";
@@ -48,18 +48,18 @@ var inline_src = (<><![CDATA[
             element.add(a);
         }
     }
-    
+
     function start(){
         sessionStorage.setItem('start', new Date().getTime());
         $('.button.radius.pledge').trigger('click');
         var claim = parseFloat($('#instaNum').val()).toFixed(2);
         sessionStorage.setItem('claim', claim);
         $("#amt").val(claim);
-        $('.button.radius.submit-form.makeclaim').trigger('click'); 
-        
+        $('.button.radius.submit-form.makeclaim').trigger('click');
+
     }
-    
-    
+
+
 
     /* jshint ignore:start */
 ]]></>).toString();
